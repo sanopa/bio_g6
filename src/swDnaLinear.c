@@ -17,12 +17,11 @@ int main(void)
 	}
 	printf("Sequences read:\ns1\t%s\ns2\t%s\n\n", s1, s2) ;
 
-	struct cost *cost = costDna(-10,-10);
+	struct cost *cost = costDna(-2,-1);
 	struct matrix *mat = swInitMat(s1,s2);
 	swFillMat(mat,cost,s1,s2);
-	/* for debugging you can uncomment:
-	   swPrintMat(mat); */
-	printBestAlis(mat,cost,s1,s2);
+	   swPrintMat(mat); 
+	//printBestAlis(mat,cost,s1,s2);
 
 	swFreeMat(mat);
 	free(cost);

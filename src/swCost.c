@@ -46,9 +46,9 @@ static void fillBlosum62(double *mat) ;
 static double dnaSubst(char x,char y)
 {
 	if (x==y)
-		return(5);
+		return(1);
 	else
-		return(-4);
+		return(-1);
 }
 
 
