@@ -43,22 +43,17 @@ struct matrix *swInitMat(char *s1, char *s2) {
 	m->cells = cells;
 
 	return m;
-} 
+}
 
 void swFillMat(struct matrix *mat, struct cost *cost, char *s1, char *s2) {
 	unsigned int h = mat->h;
 	unsigned int w = mat->w;
 	for (unsigned int i =1; i < mat->h; i++){
 		for (unsigned int j = 1; j < mat->w; j++){
-			printf("%.2f", mat->cells[j-1+ w*(i-1)].score);
-			printf("%.2f", mat->cells[j+ w*(i-1)].score);
-			printf("%.2f", mat->cells[j-1+ w*i].score);
-
 			double score = max (mat->cells[j-1+ w*(i-1)].score + cost->subst(s1[i-1], s2[j-1]),
-			 mat->cells[j+ w*(i-1)].score + cost->indelOpen, 
+			 mat->cells[j+ w*(i-1)].score + cost->indelOpen,
 					mat->cells[j-1+ w*(i)].score + cost->indelOpen, 0 );
 			mat->cells[j+w*i].score = score;
-
 			mat->cells[j+w*i].prevs = 0;
 			if (score == mat->cells[j-1+ w*(i-1)].score + cost->subst(s1[i-1], s2[j-1])){
 				mat->cells[j+w*i].prevs+=1;
@@ -72,6 +67,7 @@ void swFillMat(struct matrix *mat, struct cost *cost, char *s1, char *s2) {
 
 		}
 	}
+	printf("\n");
 }
 
 void swFreeMat(struct matrix *mat){

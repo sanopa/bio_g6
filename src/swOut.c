@@ -16,7 +16,7 @@ static double max2(int a1, int a2) {
 // 	uint8_t prev = mat->cells[w*i+j].prevs;
 
 // 	if (c.prevs&1){
-// 		double score = 
+// 		double score =
 // 		*chemin = mat->cells[w*(i-1)+(j)].score
 // 		printAli
 // 	}
@@ -25,7 +25,7 @@ static double max2(int a1, int a2) {
 // 	}
 // 	if(c.prevs&4){
 // 		printf("t");
-// 	}		
+// 	}
 // }
 
 void printBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s2){
@@ -37,13 +37,13 @@ void printBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s2){
 	for (unsigned int i =1; i < h; i++){
 		for (unsigned int j = 1; j < w; j++){
 			if (mat->cells[w*i+j].score > scoreMax){
-				scoreMax = mat->cells[w*i+j].score ; 
+				scoreMax = mat->cells[w*i+j].score ;
 				imax = i;
 				jmax = j;
 			}
 		}
 	}
-		
+
 	printf("Best score is %.2f, the best scoring alignments are: \n", scoreMax);
 
 	int max = max2(strlen(s1), strlen(s2));
@@ -62,24 +62,25 @@ void printBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s2){
 
 	int s1loc = imax;
 	int s2loc = jmax;
-	
+
 	while (c.score > 0) {
 		if (c.prevs&1){
-			if (cost->subst(s1[s1loc], s2[s2loc]) > 0) {
-				*chemin = s1[s1loc];
-				*chemin2 = s2[s2loc];
+			if (cost->subst(s1[s1loc-1], s2[s2loc-1]) > 0) {
+				*chemin = s1[s1loc-1];
+				*chemin2 = s2[s2loc-1];
 			} else {
-				*chemin = tolower(s1[s1loc]);
-				*chemin2 = tolower(s2[s2loc]);
+				*chemin = tolower(s1[s1loc-1]);
+				*chemin2 = tolower(s2[s2loc-1]);
+				printf("on est ici et on a s1=%c, s2=%c \n", *chemin, *chemin2);
 			}
 			s1loc--;
 			s2loc--;
 		} else if (c.prevs&2){
 			*chemin = '-';
-			*chemin2 = s2[s2loc];
+			*chemin2 = s2[s2loc-1];
 			s2loc--;
 		}  else if (c.prevs&4) {
-			*chemin = s1[s1loc];
+			*chemin = s1[s1loc-1];
 			*chemin2 = '-';
 			s1loc--;
 		}
@@ -88,8 +89,8 @@ void printBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s2){
 		c = mat->cells[w*s1loc+s2loc];
 	}
 
-	*chemin = s1[s1loc];
-	*chemin2 = s2[s2loc];
+	++chemin;
+	++chemin2;
 
 	printf("s1 alignment starts at %d, s2 starts at %d\n", s1loc+1, s2loc+1);
 	printf("s1:\t%s\n", chemin);
