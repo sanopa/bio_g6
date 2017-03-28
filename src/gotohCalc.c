@@ -88,7 +88,7 @@ void gotohFillMat(struct matrix *mat, struct cost *cost, char *s1, char *s2) {
       if (mat->cells[j+w*i].scoreV == mat->cells[j+ w*(i-1)].scoreV + cost->indelExtend){
         mat->cells[j+w*i].prevsV+=4;  //on vient de V
       }
-      if (mat->cells[j+w*i].scoreV == mat->cells[j+ w*(i-1)].scoreV + cost->indelOpen){
+      if (mat->cells[j+w*i].scoreV == mat->cells[j+ w*(i-1)].scoreH + cost->indelOpen){
         mat->cells[j+w*i].prevsV+=2;  //on vient de H
       }
 
@@ -99,8 +99,8 @@ void gotohFillMat(struct matrix *mat, struct cost *cost, char *s1, char *s2) {
       if (mat->cells[j+w*i].scoreH == mat->cells[j-1+ w*(i)].scoreV + cost->indelOpen){
         mat->cells[j+w*i].prevsH+=4;  //on vient de V
       }
-      if (mat->cells[j+w*i].scoreV == mat->cells[j-1+ w*(i)].scoreV + cost->indelExtend){
-        mat->cells[j+w*i].prevsV+=2;  //on vient de H
+      if (mat->cells[j+w*i].scoreH == mat->cells[j-1+ w*(i)].scoreH + cost->indelExtend){
+        mat->cells[j+w*i].prevsH+=2;  //on vient de H
       }
 
 		}
