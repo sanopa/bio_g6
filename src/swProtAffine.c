@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 #include "swCost.h"
-#include "swCalc.h"
+#include "gotohCalc.h"
 #include "swGetSeq.h"
-#include "swOut.h"
+#include "gotohOut.h"
 
 int main(void)
 {
@@ -19,13 +19,13 @@ int main(void)
 
 	/* BLOSUM62 prot subst cost with affine cost for short indels */
 	struct cost *cost = costProt(-10,-0.5);
-	struct matrix *mat = swInitMat(s1,s2);
-	swFillMat(mat,cost,s1,s2);
+	struct matrix *mat = gotohInitMat(s1,s2);
+	gotohFillMat(mat,cost,s1,s2);
 	/* for debugging you can uncomment:
 	   swPrintMat(mat); */
-	printBestAlis(mat,cost,s1,s2);
+	gotohprintBestAlis(mat,cost,s1,s2);
 
-	swFreeMat(mat);
+	gotohFreeMat(mat);
 	free(cost);
 	free(s1);
 	free(s2);
