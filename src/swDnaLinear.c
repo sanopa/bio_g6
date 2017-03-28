@@ -20,7 +20,7 @@ int main(void)
 	struct cost *cost = costDna(-10,-10);
 	struct matrix *mat = swInitMat(s1,s2);
 	swFillMat(mat,cost,s1,s2);
-	swPrintMat(mat);
+	//swPrintMat(mat);
 	printBestAlis(mat,cost,s1,s2);
 
 	swFreeMat(mat);

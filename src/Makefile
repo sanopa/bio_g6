@@ -2,7 +2,7 @@ LDFLAGS = -lm
 CFLAGS = -g -Wall -Wextra -std=c99
 CC = gcc
 
-OBJS = swCost.o mem.o swCalc.o swOut.o swGetSeq.o
+OBJS = swCost.o mem.o swCalc.o swOut.o swGetSeq.o gotohCalc.o gotohOut.o
 
 etu: swDnaLinear
 
