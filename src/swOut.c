@@ -69,7 +69,7 @@ void printBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s2){
 			}
 		}
 	}
-
+	printf("hey there !\n");
 	printf("Best score is %.2f, the best scoring alignments are: \n", scoreMax);
 
 	int max = max2(strlen(s1), strlen(s2));

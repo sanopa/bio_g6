@@ -30,6 +30,7 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 	double scoreMax = 0;
 	int imax = 0;
 	int jmax = 0;
+  printf("Hey there (affine)! \n");
 	for (unsigned int i =1; i < h; i++){
 		for (unsigned int j = 1; j < w; j++){
 			if (mat->cells[w*i+j].scoreD > scoreMax){
@@ -70,7 +71,6 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 				} else {
 					*chemin = tolower(s1[s1loc-1]);
 					*chemin2 = tolower(s2[s2loc-1]);
-					printf("on est ici et on a s1=%c, s2=%c \n", *chemin, *chemin2);
 				}
 				s1loc--;
 				s2loc--;
@@ -85,7 +85,9 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 				*chemin2 = '-';
 				s1loc--;
 				prevs = 4;
-			}
+			}else{
+					printf("coucou prevs 1\n");
+				}
 			--chemin;
 			--chemin2;
 			c = mat->cells[w*s1loc+s2loc];
@@ -97,7 +99,6 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 				} else {
 					*chemin = tolower(s1[s1loc-1]);
 					*chemin2 = tolower(s2[s2loc-1]);
-					printf("on est ici et on a s1=%c, s2=%c \n", *chemin, *chemin2);
 				}
 				s1loc--;
 				s2loc--;
@@ -112,6 +113,9 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 				*chemin2 = '-';
 				s1loc--;
 				prevs = 4;
+			}
+			else{
+				printf("coucou depuis prevs==2 \n");
 			}
 			--chemin;
 			--chemin2;
@@ -139,9 +143,15 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 				s1loc--;
 				prevs = 4;
 			}
+			else{
+				printf("coucou prevs 4\n");
+			}
 			--chemin;
 			--chemin2;
 			c = mat->cells[w*s1loc+s2loc];
+		}
+		else{
+			printf("coucou pas dans un prev ! \n");
 		}
 	}
 

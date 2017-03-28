@@ -5,6 +5,7 @@
 #include "mem.h"
 #include "gotohCalc.h"
 #include "swCost.h"
+#include <assert.h>
 
 static double max(double a1, double a2, double a3, double a4){
 	double res = a1;
@@ -70,6 +71,12 @@ void gotohFillMat(struct matrix *mat, struct cost *cost, char *s1, char *s2) {
         mat->cells[j-1+ w*(i)].scoreV + cost->indelOpen,
         mat->cells[j-1+ w*(i)].scoreH + cost->indelExtend, 0 );
 
+
+        mat->cells[j+w*i].prevsD=0;
+        mat->cells[j+w*i].prevsV=0;
+        mat->cells[j+w*i].prevsH=0;
+
+
         //prevsD. Le précédent est donc forcément en i-1, j-1
 			if (mat->cells[j+w*i].scoreD == mat->cells[j-1+ w*(i-1)].scoreD + cost->subst(s1[i-1], s2[j-1]) ){
 				mat->cells[j+w*i].prevsD+=1;  //on vient de D
@@ -102,7 +109,6 @@ void gotohFillMat(struct matrix *mat, struct cost *cost, char *s1, char *s2) {
       if (mat->cells[j+w*i].scoreH == mat->cells[j-1+ w*(i)].scoreH + cost->indelExtend){
         mat->cells[j+w*i].prevsH+=2;  //on vient de H
       }
-
 		}
 	}
 }
