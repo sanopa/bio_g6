@@ -1,0 +1,20 @@
+Exemple-slicing
+
+1.
+>mRNA TP53.hAug10, 2271 bp et > human genome portion from 10q23.3 forward strand
+Gotoh
+Best score is 80.00, the best scoring alignments are:
+
+Linéaire
+Best score is 149.00, the best scoring alignments are:
+
+>mRNA TP53.hAug10, 2271 bp et > human genome portion from 17p13.1 reverse strand
+Gotoh
+Best score is 3022.65, the best scoring alignments are:
+
+Linéaire
+Best score is 2215.00, the best scoring alignments are:
+
+Le chromosome 17 a un score plus élevé donc, a priori, c'est celui qui est le plus proche de la portion d'ARNm.
+
+2. Le modèle affine semble plus approprié car il prend en compte les espaces dans les séquences et nous comparons ici deux séquences de taille très différentes. Si on utilisqit le modèle linéaire, cela voudrait dire que la séquence du chr17 est contenue quelque part dans celle de l'ARNm (et entourée d'autres séquences indépendantes), alors qu'en fait la séquence du chr17 se retrouve dans celle de l'ARNm avec des espaces entre les bases azotées(=les lettres).
