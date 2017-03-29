@@ -63,26 +63,21 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 	int occBreak =0;
 	while (c.scoreD > 0 ) {
 		if (prevs == 1) {
-			if (c.prevsD&1) {
-				if (cost->subst(s1[s1loc-1], s2[s2loc-1]) > 0) {
+			if (cost->subst(s1[s1loc-1], s2[s2loc-1]) > 0) {
 				*chemin = s1[s1loc-1];
 				*chemin2 = s2[s2loc-1];
-				} else {
-					*chemin = tolower(s1[s1loc-1]);
-					*chemin2 = tolower(s2[s2loc-1]);
-				}
-				s1loc--;
-				s2loc--;
+			} else {
+				*chemin = tolower(s1[s1loc-1]);
+				*chemin2 = tolower(s2[s2loc-1]);
+			}
+			s1loc--;
+			s2loc--;
+
+			if (c.prevsD&1) {
 				prevs = 1;
 			} else if (c.prevsD&2) {
-				*chemin = '-';
-				*chemin2 = s2[s2loc-1];
-				s2loc--;
 				prevs = 2;
 			} else if (c.prevsD&4) {
-				*chemin = s1[s1loc-1];
-				*chemin2 = '-';
-				s1loc--;
 				prevs = 4;
 			}else{
 				printf("i=%i, j=%i \n", s1loc,s2loc);
@@ -94,26 +89,14 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 			--chemin2;
 			c = mat->cells[w*s1loc+s2loc];
 		} else if (prevs == 2) {
+			*chemin = '-';
+			*chemin2 = s2[s2loc-1];
+			s2loc--;
 			if (c.prevsH&1) {
-				if (cost->subst(s1[s1loc-1], s2[s2loc-1]) > 0) {
-				*chemin = s1[s1loc-1];
-				*chemin2 = s2[s2loc-1];
-				} else {
-					*chemin = tolower(s1[s1loc-1]);
-					*chemin2 = tolower(s2[s2loc-1]);
-				}
-				s1loc--;
-				s2loc--;
 				prevs = 1;
 			} else if (c.prevsH&2) {
-				*chemin = '-';
-				*chemin2 = s2[s2loc-1];
-				s2loc--;
 				prevs = 2;
 			} else if (c.prevsH&4) {
-				*chemin = s1[s1loc-1];
-				*chemin2 = '-';
-				s1loc--;
 				prevs = 4;
 			}
 			else{
@@ -128,26 +111,14 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 			--chemin2;
 			c = mat->cells[w*s1loc+s2loc];
 		} else if (prevs == 4) {
+			*chemin = s1[s1loc-1];
+			*chemin2 = '-';
+			s1loc--;
 			if (c.prevsV&1) {
-				if (cost->subst(s1[s1loc-1], s2[s2loc-1]) > 0) {
-				*chemin = s1[s1loc-1];
-				*chemin2 = s2[s2loc-1];
-				} else {
-					*chemin = tolower(s1[s1loc-1]);
-					*chemin2 = tolower(s2[s2loc-1]);
-				}
-				s1loc--;
-				s2loc--;
 				prevs = 1;
 			} else if (c.prevsV&2) {
-				*chemin = '-';
-				*chemin2 = s2[s2loc-1];
-				s2loc--;
 				prevs = 2;
 			} else if (c.prevsV&4) {
-				*chemin = s1[s1loc-1];
-				*chemin2 = '-';
-				s1loc--;
 				prevs = 4;
 			}
 			else{
@@ -165,7 +136,7 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 		}
 		else{
 			printf("coucou pas dans un prev ! \n");
-		}
+
 	}
 
 	/*fin ajout débug */
