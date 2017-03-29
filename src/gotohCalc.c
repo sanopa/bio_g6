@@ -41,12 +41,12 @@ struct matrix *gotohInitMat(char *s1, char *s2) {
 	}
 
 	for (unsigned int i = 0; i < m->w; i++) {
-    cells[m->w * i].scoreH = -1;
-		cells[m->w * i].prevsH = 0;
-    cells[m->w * i].scoreV = -1;
-		cells[m->w * i].prevsV = 0;
-    cells[m->w * i].scoreD = 0;
-		cells[m->w * i].prevsD = 0;
+    cells[i].scoreH = -1;
+		cells[i].prevsH = 0;
+    cells[i].scoreV = -1;
+		cells[i].prevsV = 0;
+    cells[i].scoreD = 0;
+		cells[i].prevsD = 0;
   }
 
 	m->cells = cells;
