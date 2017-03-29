@@ -119,21 +119,41 @@ void gotohFreeMat(struct matrix *mat){
 }
 
 void gotohPrintMat(struct matrix *mat){
-	// for (unsigned int i =0; i < mat->h; i++){
-	// 	for (unsigned int j = 0; j < mat->w; j++){
-	// 		struct cell c = mat->cells[mat->w*i +j];
-	// 		if (c.prevs&1){
-	// 			printf("d");
-	// 		}
-	// 		if (c.prevs&2){
-	// 			printf("l");
-	// 		}
-	// 		if(c.prevs&4){
-	// 			printf("t");
-	// 		}
-  //
-	// 		printf("%.0f ", c.score);
-	// 	}
-	// 	printf("\n");
-	// }
+	for (unsigned int i =0; i < mat->h; i++){
+		for (unsigned int j = 0; j < mat->w; j++){
+			struct cell c = mat->cells[mat->w*i +j];
+			// if (c.prevsD&1){
+			// 	printf("d");
+			// }
+			// if (c.prevsD&2){
+			// 	printf("l");
+			// }
+			// if(c.prevsD&4){
+			// 	printf("t");
+			// }
+      //
+      // if (c.prevsH&1){
+      //   printf("d");
+      // }
+      // if (c.prevsH&2){
+      //   printf("l");
+      // }
+      // if(c.prevsH&4){
+      //   printf("t");
+      // }
+      //
+      // if (c.prevsV&1){
+      //   printf("d");
+      // }
+      // if (c.prevsV&2){
+      //   printf("l");
+      // }
+      // if(c.prevsV&4){
+      //   printf("t");
+      // }
+
+			printf("%.0f ", c.scoreD);
+		}
+		printf("\n");
+	}
 }

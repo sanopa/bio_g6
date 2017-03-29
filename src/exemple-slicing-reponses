@@ -17,4 +17,15 @@ Best score is 2215.00, the best scoring alignments are:
 
 Le chromosome 17 a un score plus élevé donc, a priori, c'est celui qui est le plus proche de la portion d'ARNm.
 
-2. Le modèle affine semble plus approprié car il prend en compte les espaces dans les séquences et nous comparons ici deux séquences de taille très différentes. Si on utilisqit le modèle linéaire, cela voudrait dire que la séquence du chr17 est contenue quelque part dans celle de l'ARNm (et entourée d'autres séquences indépendantes), alors qu'en fait la séquence du chr17 se retrouve dans celle de l'ARNm avec des espaces entre les bases azotées(=les lettres).
+2. Le modèle affine semble plus approprié car il prend en compte les espaces dans les séquences et nous comparons ici deux séquences de tailles très différentes. Si on utilisait le modèle linéaire, cela voudrait dire que la séquence du chromosome 17 est contenue quelque part dans celle de l'ARNm (et entourée d'autres séquences indépendantes), alors qu'en fait la séquence du chromosome 17 se retrouve dans celle de l'ARNm avec des (grands) espaces entre les bases azotées(=les lettres).
+
+3. 
+A première vue, il y a 20 alignements différents. Mais, en regardant des séquences entières de matches, on remarque qu'une séquence pouvant correspondre à un intron se retrouve dans tous les alignements : 
+
+TGAGGCCAGGAGATGGAGGCTGCAGTGAGCTGTGATCACACCACTGTGCTCCAGCCTGAGTGACAGAGCAAGACCCTATCTCAAAAAAAAAAAAAAAAAA
+GAAAAGCTCCTGAGGTGTAGACGCCAACTCTCTCTAGCTCGCTAGTGGGTTGCAGGAGGTGCTTACGCATGTTTGTTTCTTTGCTGCCGTCTTCCAGTTG
+CTTTATCTGTTCACTTGTGCCCTGACTTTCAACTCTGTCTCCTTCCTCTTCCTACAGTACTCCCCTGCCCTCAACAAGATGTTTTGCCAACTGGCCAAGA
+CCTGCCCTGTGCAGCTGTGGGTTGATTCCACACCCCCGCCCGGCACCCGCGTCCGCGCCATGGCCATCTACAAGCAGTCACAGCACATGACGGAGGTTGT
+
+L'ARNm code pour tout un gêne, il y a donc peut-être des séquences parmi celle que l'on a passée en entrée qui ne sont pas reliées à celle du chromosome 17 (qui a par ailleurs une longueur bien inférieure). On retrouve donc l'intron dans les deux, mais il y a également d'autres séquences dans l'ARNm complétement indépendantes qui peuvent donc générer une multitude d'alignements optimaux. 
+

@@ -115,7 +115,7 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 				prevs = 4;
 			}
 			else{
-				printf("coucou depuis prevs==2 \n");
+				//printf("coucou depuis prevs==2 \n");
 			}
 			--chemin;
 			--chemin2;
