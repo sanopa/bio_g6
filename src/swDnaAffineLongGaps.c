@@ -25,6 +25,7 @@ int main(void)
 	gotohFillMat(mat,cost,s1,s2);
 	/* for debugging you can uncomment:
 	   swPrintMat(mat); */
+		 //gotohPrintMat(mat);
 	gotohprintBestAlis(mat,cost,s1,s2);
 	//swFreeMat(mat);
 	gotohFreeMat(mat);

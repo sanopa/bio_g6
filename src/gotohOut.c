@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
-
+#include <stdlib.h>
 
 static double max2(int a1, int a2) {
 	if (a1 < a2) {
@@ -30,7 +30,6 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 	double scoreMax = 0;
 	int imax = 0;
 	int jmax = 0;
-  printf("Hey there (affine)! \n");
 	for (unsigned int i =1; i < h; i++){
 		for (unsigned int j = 1; j < w; j++){
 			if (mat->cells[w*i+j].scoreD > scoreMax){
@@ -61,8 +60,8 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 	int s1loc = imax;
 	int s2loc = jmax;
 	int prevs = 1;
-
-	while (c.scoreD > 0 || c.scoreV > 0 || c.scoreH > 0) {
+	int occBreak =0;
+	while (c.scoreD > 0 ) {
 		if (prevs == 1) {
 			if (c.prevsD&1) {
 				if (cost->subst(s1[s1loc-1], s2[s2loc-1]) > 0) {
@@ -86,8 +85,11 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 				s1loc--;
 				prevs = 4;
 			}else{
-					printf("coucou prevs 1\n");
-				}
+				printf("i=%i, j=%i \n", s1loc,s2loc);
+				printf("coucou prevs 1\n");
+				occBreak=1;
+				break;
+			}
 			--chemin;
 			--chemin2;
 			c = mat->cells[w*s1loc+s2loc];
@@ -115,7 +117,12 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 				prevs = 4;
 			}
 			else{
-				//printf("coucou depuis prevs==2 \n");
+				printf("i=%i, j=%i \n", s1loc,s2loc);
+				printf("le score vaut %f \n", mat->cells[w*s1loc+s2loc].scoreD);
+				printf("les prevs valent D=%i, H=%i, V=%i \n", c.prevsD, c.prevsH, c.prevsV);
+				printf("coucou depuis prevs==2 \n");
+				occBreak=1;
+				break;
 			}
 			--chemin;
 			--chemin2;
@@ -144,7 +151,13 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 				prevs = 4;
 			}
 			else{
+				printf("i=%i, j=%i \n", s1loc,s2loc);
+				printf("le score vaut %f \n", mat->cells[w*s1loc+s2loc].scoreD);
+				printf("les prevs valent D=%i, H=%i, V=%i \n", c.prevsD, c.prevsH, c.prevsV);
 				printf("coucou prevs 4\n");
+				occBreak=1;
+				break;
+
 			}
 			--chemin;
 			--chemin2;
@@ -155,9 +168,12 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 		}
 	}
 
+	/*fin ajout débug */
 	++chemin;
 	++chemin2;
-
+	if (occBreak){
+		printf("il y a eu u n break \n");
+	}
 	printf("s1 alignment starts at %d, s2 starts at %d\n", s1loc+1, s2loc+1);
 	printf("s1:\t%s\n", chemin);
 	printf("s2:\t%s\n", chemin2);

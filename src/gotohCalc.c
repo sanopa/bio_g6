@@ -119,41 +119,32 @@ void gotohFreeMat(struct matrix *mat){
 }
 
 void gotohPrintMat(struct matrix *mat){
-	for (unsigned int i =0; i < mat->h; i++){
-		for (unsigned int j = 0; j < mat->w; j++){
+	for (unsigned int i =0; i < 14; i++){
+		for (unsigned int j = 0; j < 14; j++){
 			struct cell c = mat->cells[mat->w*i +j];
-			// if (c.prevsD&1){
-			// 	printf("d");
-			// }
-			// if (c.prevsD&2){
-			// 	printf("l");
-			// }
-			// if(c.prevsD&4){
-			// 	printf("t");
-			// }
-      //
-      // if (c.prevsH&1){
-      //   printf("d");
-      // }
-      // if (c.prevsH&2){
-      //   printf("l");
-      // }
-      // if(c.prevsH&4){
-      //   printf("t");
-      // }
-      //
-      // if (c.prevsV&1){
-      //   printf("d");
-      // }
-      // if (c.prevsV&2){
-      //   printf("l");
-      // }
-      // if(c.prevsV&4){
-      //   printf("t");
-      // }
 
-			printf("%.0f ", c.scoreD);
+			printf("%.0fx%i ", c.scoreD, c.prevsD);
 		}
 		printf("\n");
 	}
+	printf("\n");
+
+	for (unsigned int i =1; i < 14; i++){
+		for (unsigned int j = 1; j < 14; j++){
+			struct cell c = mat->cells[mat->w*i +j];
+
+			printf("%.0fx%i ", c.scoreH, c.prevsH);
+		}
+		printf("\n");
+	}
+printf("\n");
+	for (unsigned int i =1; i < 14; i++){
+		for (unsigned int j = 1; j < 14; j++){
+			struct cell c = mat->cells[mat->w*i +j];
+
+			printf("%.0fx%i ", c.scoreV, c.prevsV);
+		}
+		printf("\n");
+	}
+	printf("\n");
 }

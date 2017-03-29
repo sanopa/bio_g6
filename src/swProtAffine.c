@@ -22,8 +22,8 @@ int main(void)
 	struct matrix *mat = gotohInitMat(s1,s2);
 	gotohFillMat(mat,cost,s1,s2);
 	/* for debugging you can uncomment: */
-	   gotohPrintMat(mat);
-	//gotohprintBestAlis(mat,cost,s1,s2);
+	   //gotohPrintMat(mat);
+	gotohprintBestAlis(mat,cost,s1,s2);
 
 	gotohFreeMat(mat);
 	free(cost);
