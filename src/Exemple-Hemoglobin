@@ -1,0 +1,10 @@
+Exemple-Hemoglobin
+
+1. L'alignement de alpha et beta est le même pour le programme et pour l'exemple de la page. Le score est identique aussi.  
+
+2. 
+Alpha et beta: 293,5
+Beta et zeta: 249,0
+Alpha et zeta: 436,0
+
+On peut conclure que l'alignement de alpha et zeta est le meilleur. D'autant plus que, contrairement aux deux autres, cet alignement ne présente pas d'insertion/deletion et seulement des mismatches. L'alignement commence au début des séquences pour alpha et zeta, mais pour les paires alpha / beta et beta / zeta il commence aux coordonnées 3 et 4. 
