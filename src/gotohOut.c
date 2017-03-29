@@ -13,14 +13,14 @@ static double max2(int a1, int a2) {
 }
 
 static double max3(int a1, int a2, int a3) {
-  double res = a1;
+	double res = a1;
 	if (res < a2) {
 		res = a2;
 	}
-  if (res < a3){
+	if (res < a3){
 		res = a3;
 	}
-  return res;
+	return res;
 }
 
 
@@ -63,7 +63,7 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 	int occBreak =0;
 	while (c.scoreD > 0 ) {
 		if (prevs == 1) {
-			if (cost->subst(s1[s1loc-1], s2[s2loc-1]) > 0) {
+			if (cost->subst(s1[s1loc-1], s2[s2loc-1]) >= 0) {
 				*chemin = s1[s1loc-1];
 				*chemin2 = s2[s2loc-1];
 			} else {
@@ -90,7 +90,7 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 			c = mat->cells[w*s1loc+s2loc];
 		} else if (prevs == 2) {
 			*chemin = '-';
-			*chemin2 = s2[s2loc-1];
+			*chemin2 = tolower(s2[s2loc-1]);
 			s2loc--;
 			if (c.prevsH&1) {
 				prevs = 1;
@@ -111,7 +111,7 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 			--chemin2;
 			c = mat->cells[w*s1loc+s2loc];
 		} else if (prevs == 4) {
-			*chemin = s1[s1loc-1];
+			*chemin = tolower(s1[s1loc-1]);
 			*chemin2 = '-';
 			s1loc--;
 			if (c.prevsV&1) {
@@ -133,19 +133,19 @@ void gotohprintBestAlis(struct matrix *mat, struct cost *cost, char *s1, char *s
 			--chemin;
 			--chemin2;
 			c = mat->cells[w*s1loc+s2loc];
-		}
-		else{
+		} else{
 			printf("coucou pas dans un prev ! \n");
 
+		}
 	}
 
 	/*fin ajout débug */
-	++chemin;
-	++chemin2;
-	if (occBreak){
-		printf("il y a eu u n break \n");
+		++chemin;
+		++chemin2;
+		if (occBreak){
+			printf("il y a eu u n break \n");
+		}
+		printf("s1 alignment starts at %d, s2 starts at %d\n", s1loc+1, s2loc+1);
+		printf("s1:\t%s\n", chemin);
+		printf("s2:\t%s\n", chemin2);
 	}
-	printf("s1 alignment starts at %d, s2 starts at %d\n", s1loc+1, s2loc+1);
-	printf("s1:\t%s\n", chemin);
-	printf("s2:\t%s\n", chemin2);
-}
