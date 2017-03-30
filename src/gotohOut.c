@@ -85,7 +85,7 @@ void gotohPrintAlis(struct matrix *mat, struct cost *cost, char *s1, char *s2, c
 				gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, 4);
 			}
 		}
-	} else {
+	} else if (prev == 1) {
 		++chemin;
 		++chemin2;
 
