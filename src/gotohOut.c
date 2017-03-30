@@ -40,47 +40,50 @@ void gotohPrintAlis(struct matrix *mat, struct cost *cost, char *s1, char *s2, c
 			}
 			s1loc--;
 			s2loc--;
-
-			if (c.prevsD&1) {
-				prevs = 1;
-			} else if (c.prevsD&2) {
-				prevs = 2;
-			} else if (c.prevsD&4) {
-				prevs = 4;
-			}
 			--chemin;
 			--chemin2;
-			gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, prevs);
+
+			if (c.prevsD&1) {
+				gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, 1);
+			}
+			if (c.prevsD&2) {
+				gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, 2);
+			}
+			if (c.prevsD&4) {
+				gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, 4);
+			}
 		}
 		if (prevs == 2) {
 			*chemin = '-';
 			*chemin2 = tolower(s2[s2loc-1]);
 			s2loc--;
-			if (c.prevsH&1) {
-				prevs = 1;
-			} else if (c.prevsH&2) {
-				prevs = 2;
-			} else if (c.prevsH&4) {
-				prevs = 4;
-			}
 			--chemin;
 			--chemin2;
-			gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, prevs);
+			if (c.prevsH&1) {
+				gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, 1);
+			}
+			if (c.prevsH&2) {
+				gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, 2);
+			}
+			if (c.prevsH&4) {
+				gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, 4);
+			}
 		}
 		if (prevs == 4) {
 			*chemin = tolower(s1[s1loc-1]);
 			*chemin2 = '-';
 			s1loc--;
-			if (c.prevsV&1) {
-				prevs = 1;
-			} else if (c.prevsV&2) {
-				prevs = 2;
-			} else if (c.prevsV&4) {
-				prevs = 4;
-			}
 			--chemin;
 			--chemin2;
-			gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, prevs);
+			if (c.prevsV&1) {
+				gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, 1);
+			}
+			if (c.prevsV&2) {
+				gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, 2);
+			}
+			if (c.prevsV&4) {
+				gotohPrintAlis(mat, cost, s1, s2, chemin, chemin2, s1loc, s2loc, 4);
+			}
 		}
 	} else {
 		++chemin;
